@@ -77,7 +77,8 @@ class ModFindYourRep extends \Contao\Module
   			return;
   		}
 
-		$arrStates = array();
+		$arrReps = array();
+        $rep_id = 0;
 		
 		// Generate List
 		while ($objLocation->next())
@@ -99,8 +100,11 @@ class ModFindYourRep extends \Contao\Module
 			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
 			$objTemplate = new \FrontendTemplate($strItemTemplate);
 			$objTemplate->setData($arrLocation);
-			$arrStates['reps'][] = $objTemplate->parse();
+			$arrReps[$rep_id] = $objTemplate->parse();
+            $rep_id++;
 		}
+
+        $this->Template->reps = $arrReps;
 		
 	}
 
