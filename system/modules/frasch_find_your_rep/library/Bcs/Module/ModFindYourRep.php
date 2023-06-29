@@ -120,7 +120,7 @@ class ModFindYourRep extends \Contao\Module
 			$arrLocation['zip'] 			= $objLocation->zip;
 			
 
-			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_location');
+			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
 			$objTemplate = new \FrontendTemplate($strItemTemplate);
 			$objTemplate->setData($arrLocation);
 			$arrStates[$strStateKey]['locations'][] = $objTemplate->parse();
