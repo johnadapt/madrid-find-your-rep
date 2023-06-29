@@ -82,58 +82,25 @@ class ModFindYourRep extends \Contao\Module
 		// Generate List
 		while ($objLocation->next())
 		{
-			$strStateKey = $objLocation->state;
-			$strStateName = ($this->arrStates["United States"][$objLocation->state] != '' ? $this->arrStates["United States"][$objLocation->state] : $this->arrStates["Canada"][$objLocation->state]);
-			if (in_array($objLocation->state, array('AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'))) {
-				$strStateKey = 'CAN';
-				$strStateName = 'Canada - All Provinces';
-			}
-			
-			if (!array_key_exists($strStateKey, $arrStates)) {
-				$arrStates[$strStateKey] = array(
-					"name" 			=> $strStateName,
-					"abbr"			=> $strStateKey,
-					"locations"		=> array()
-				);
-			}
-			
-			$arrLocation = array(
-				'id'		=> $objLocation->id,
-				'alias'		=> $objLocation->alias,
-				'tstamp'	=> $objLocation->tstamp,
-				'timetamp'	=> \Date::parse(\Config::get('datimFormat'), $objLocation->tstamp),
-				'published' => $objLocation->published
-			);
-			
-			if ($this->jumpTo) {
-				$objTarget = $this->objModel->getRelated('jumpTo');
-				$arrLocation['link'] = $this->generateFrontendUrl($objTarget->row()) .'?alias=' .$objLocation->alias;
-			}
-			
-			//$this->Template->categories = \StringUtil::deserialize(YOUR_VARIABLE_HERE);
-			
-			$arrLocation['name'] 			= $objLocation->name;
-			$arrLocation['contact_name']		= $objLocation->contact_name;
-			$arrLocation['phone'] 			= $objLocation->phone;
-			$arrLocation['url'] 			= $objLocation->url;
-			$arrLocation['territory_notes'] 	= $objLocation->territory_notes;
-			$arrLocation['zip'] 			= $objLocation->zip;
+            
+			$arrLocation['rep_name'] 			= $objLocation->rep_name;
+			$arrLocation['company_name']		= $objLocation->company_name;
+			$arrLocation['region']              = $objLocation->region;
+			$arrLocation['address'] 			= $objLocation->address;
+			$arrLocation['city']                = $objLocation->city;
+			$arrLocation['state']               = $objLocation->state;
+            $arrLocation['zip']                 = $objLocation->zip;
+            $arrLocation['phone_number']        = $objLocation->phone_number;
+            $arrLocation['alt_phone_number']    = $objLocation->alt_phone_number;
+            $arrLocation['email']               = $objLocation->email;
+            $arrLocation['website'] 			= $objLocation->website;
 			
 
 			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
 			$objTemplate = new \FrontendTemplate($strItemTemplate);
 			$objTemplate->setData($arrLocation);
-			$arrStates[$strStateKey]['locations'][] = $objTemplate->parse();
+			$arrStates['reps'][] = $objTemplate->parse();
 		}
-
-		$arrTemp = $arrStates;
-		unset($arrTemp['CAN']);
-		uasort($arrTemp, array($this,'sortByState'));
-		$arrTemp['CAN'] = $arrStates['CAN'];
-		$arrStates = $arrTemp;
-		
-		$this->Template->stateOptions = $this->generateSelectOptions();
-		$this->Template->states = $arrStates;
 		
 	}
 
