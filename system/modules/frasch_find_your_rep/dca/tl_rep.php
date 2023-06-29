@@ -25,7 +25,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
             'keys' => array
             (
                 'id' 	=> 	'primary',
-                'alias' =>  'index'
+                'rep_name' =>  'index'
             )
         )
     ),
