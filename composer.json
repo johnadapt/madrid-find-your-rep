@@ -1,0 +1,36 @@
+{
+    "name":"bright-cloud-studio/frasch-find-your-rep",
+    "description":"A custom version of our Rep Locator package for Frasch",
+    "homepage": "http://brightcloudstudio.com/",
+    "keywords":["frasch", "find", "your", "rep", "bright", "cloud", "studio"],
+    "type":"contao-module",
+    "license":"LGPL-3.0-or-later",
+    "authors":[
+        {
+            "name":"Bright Cloud Studio",
+            "homepage":"https://brightcloudstudio.com"
+        }
+    ],
+    "require":{
+        "php": "^8.0",
+        "contao/core-bundle": "^4.13"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bcs\\": [
+                "system/modules/frasch_find_your_rep/library/Bcs"
+            ]
+        }
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "system/modules/frasch_find_your_rep": "system/modules/frasch_find_your_rep"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
