@@ -104,7 +104,7 @@ class ModFindYourRep extends \Contao\Module
 
             $states_string = '';
             foreach($objLocation->state as $state) {
-                $states_string .= $state . " ";
+                $states_string = $states_string . $state . " ";
             }
 
             $arrLocation['class_states'] = $states_string;
