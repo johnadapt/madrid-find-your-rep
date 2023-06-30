@@ -12,6 +12,7 @@
 
 /* Legends */
 $GLOBALS['TL_LANG']['tl_rep']['rep_legend'] 	= 'Rep Details';
+$GLOBALS['TL_LANG']['tl_rep']['state_legend'] 	= 'Select States';
 $GLOBALS['TL_LANG']['tl_rep']['publish_legend'] 	= 'Publish';
 
 /* Fields */
