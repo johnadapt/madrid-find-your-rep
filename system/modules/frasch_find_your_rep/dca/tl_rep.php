@@ -171,7 +171,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'label'                   => &$GLOBALS['TL_LANG']['tl_rep']['state'],
     			'inputType'               => 'select',
     			'default'				  => '',
-    			'options_callback'		  => array('Bcs\Backend\Locations', 'getStates'),
+    			'options_callback'		  => array('Bcs\Backend\Reps', 'getStates'),
     			'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
