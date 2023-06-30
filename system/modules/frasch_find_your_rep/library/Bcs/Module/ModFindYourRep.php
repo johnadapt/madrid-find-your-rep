@@ -89,12 +89,13 @@ class ModFindYourRep extends \Contao\Module
 			$arrLocation['region']              = $objLocation->region;
 			$arrLocation['address'] 			= $objLocation->address;
 			$arrLocation['city']                = $objLocation->city;
-			$arrLocation['state']               = $objLocation->state;
             $arrLocation['zip']                 = $objLocation->zip;
             $arrLocation['phone_number']        = $objLocation->phone_number;
             $arrLocation['alt_phone_number']    = $objLocation->alt_phone_number;
             $arrLocation['email']               = $objLocation->email;
             $arrLocation['website'] 			= $objLocation->website;
+			
+			$arrLocation['state']               = unserialize($objLocation->state);
 			
 
 			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
