@@ -169,7 +169,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
         'state' => array
     		(
     			'label'                   => &$GLOBALS['TL_LANG']['tl_rep']['state'],
-    			'inputType'               => 'select',
+    			'inputType'               => 'checkbox',
     			'default'				  => '',
     			'options_callback'		  => array('Bcs\Backend\Reps', 'getStates'),
     			'eval'                    => array('multiple'=>true, 'includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
