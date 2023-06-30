@@ -101,6 +101,14 @@ class ModFindYourRep extends \Contao\Module
             $arrLocation['website'] 			= $objLocation->website;
 			
 			$arrLocation['state']               = unserialize($objLocation->state);
+
+            $states = unserialize($objLocation->state);
+            $states_string = '';
+            foreach($states as $state) {
+                $states_string .= $state . " ";
+            }
+
+            $arrLocation['class_states'] = $states_string;
 			
 
 			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
