@@ -1,3 +1,3 @@
 $(document).ready(function() {
-  alert("Bing Bong Noise");
+  //alert("Bing Bong Noise");
 });
