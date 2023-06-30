@@ -115,7 +115,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
         ),
         'tstamp' => array
         (
-            'sql'                     		=> "int(10) unsigned NOT NULL default '0'"
+            'sql'                     => "int(10) unsigned NOT NULL default '0'"
         ),
     		'sorting' => array
     		(
@@ -136,7 +136,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'region' => array
@@ -145,7 +145,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'address' => array
@@ -154,7 +154,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'city' => array
@@ -163,7 +163,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'state' => array
@@ -172,7 +172,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'checkbox',
     			'default'				  => '',
     			'options_callback'		  => array('Bcs\Backend\Reps', 'getStates'),
-    			'eval'                    => array('multiple'=>true, 'includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('multiple'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'zip' => array
@@ -181,7 +181,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'phone_number' => array
@@ -190,7 +190,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'alt_phone_number' => array
@@ -199,7 +199,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'email' => array
@@ -208,7 +208,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'website' => array
@@ -217,7 +217,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,
-    			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
     		'published' => array
