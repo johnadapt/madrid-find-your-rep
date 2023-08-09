@@ -1,3 +1,63 @@
-<div class="rep">
-  This is a rep
+<?php
+	$class_states = '';
+	foreach($this->state as $state) {
+		$class_states .= $state . ' ';
+	}
+?>
+
+<div class="rep <?= $class_states ?>" style="display: none;" data-product-line="<?= $this->product_line ?>">
+	
+	<div class="col_1">
+		<p class="rep_name"><?= $this->rep_name ?></p>
+		<p class="company_name"><?= $this->company_name ?></p>
+	</div>
+	
+	<div class="col_2">
+		<p class="label">Email</p>
+		<p class="email"><?= $this->email ?></p>
+	</div>
+	
+	<div class="col_3">
+		<p class="label">Phone</p>
+		<p class="phone_number"><?= $this->phone_number ?></p>
+	</div>
+	
+	<div class="col_4">
+		<p class="label">Territory</p>
+		<p class="territory"><?= $this->region ?></p>
+	</div>
+	
+	<div class="col_5">
+		<a href="mailto:<?= $this->email ?>">Contact</a>
+	</div>
+	
+	<div class="col_dev">
+		
+		<div class="wrapper">
+			<p class="label">States</p>
+			<p class="states">
+				<?php
+					$state_count = 0;
+					foreach($this->state as $state) {
+						if($state_count == 0) {
+							echo $state;
+						} else {
+							echo ", " . $state;
+						}
+						$state_count++;
+					}
+				?>
+			</p>
+		</div>
+		
+		<div class="wrapper">
+			<p class="label">Product Line</p>
+			<p class="product_line">
+				<?= $this->product_line ?>
+			</p>
+		</div>
+		
+	</div>
+	
+	
 </div>
