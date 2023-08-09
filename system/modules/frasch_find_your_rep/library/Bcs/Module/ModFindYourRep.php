@@ -92,6 +92,7 @@ class ModFindYourRep extends \Contao\Module
 			$arrLocation['rep_name'] 			= $objLocation->rep_name;
 			$arrLocation['company_name']		= $objLocation->company_name;
 			$arrLocation['region']              = $objLocation->region;
+			$arrLocation['product_line']        = $objLocation->product_line;
 			$arrLocation['address'] 			= $objLocation->address;
 			$arrLocation['city']                = $objLocation->city;
             $arrLocation['zip']                 = $objLocation->zip;
