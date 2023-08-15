@@ -16,9 +16,9 @@ $( document ).ready(function() {
         
         // show our product line filter once a state is selected
         if(selectedState != '') {
-            $('.select_product_line').fadeIn();
+            $('.select_product_line').show();
         } else {
-            $('.select_product_line').fadeOut();
+            $('.select_product_line').hide();
         }
         
         // Loop through each listing
@@ -32,16 +32,16 @@ $( document ).ready(function() {
                 
                 if(selectedProductLine == '')
                     // if there is nothing selected then show our rep
-                    $(this).fadeIn();
+                    $(this).show();
                 else {
                     // if there is something selected see if it matches our listing
                     if($(this).data('product-line') == selectedProductLine)
-                        $(this).fadeIn();
+                        $(this).show();
                     else
-                        $(this).fadeOut();
+                        $(this).hide();
                 }
             } else {
-                $(this).fadeOut();
+                $(this).hide();
             }
         });
         
@@ -67,17 +67,17 @@ $( document ).ready(function() {
                 
                 if(selectedState == '') {
                     // if our selected state is empty show our listing
-                    $(this).fadeIn();
+                    $(this).show();
                 } else {
                     // if we selected a state, make sure the state is in the class list
                     if($(this).hasClass(selectedState))
-                        $(this).fadeIn();
+                        $(this).show();
                     else
-                        $(this).fadeOut();
+                        $(this).hide();
                 }
 
             } else {
-                $(this).fadeOut();
+                $(this).hide();
             }
         });
 
