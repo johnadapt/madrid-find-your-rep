@@ -8,28 +8,38 @@
 <div class="rep <?= $class_states ?>" style="display: none;" data-product-line="<?= $this->product_line ?>">
 	
 	<div class="col_1">
-		<p class="rep_name"><?= $this->rep_name ?></p>
+		<h3 class="rep_name"><?= $this->rep_name ?></h3>
 		<p class="company_name"><?= $this->company_name ?></p>
 	</div>
 	
-	<div class="col_2">
-		<p class="label">Email</p>
-		<p class="email"><?= $this->email ?></p>
+	
+	
+	<div class="group_1">
+		<div class="col_2">
+			<h4 class="label">Email</h4>
+			<p class="email"><?= $this->email ?></p>
+		</div>
+		
+		<div class="col_3">
+			<h4 class="label">Phone</h4>
+			<p class="phone_number"><?= $this->phone_number ?></p>
+		</div>
 	</div>
 	
-	<div class="col_3">
-		<p class="label">Phone</p>
-		<p class="phone_number"><?= $this->phone_number ?></p>
+	
+	
+	<div class="group_2">
+		<div class="col_4">
+			<h4 class="label">Territory</h4>
+			<p class="territory"><?= $this->region ?></p>
+		</div>
+		
+		<div class="col_5">
+			<a href="mailto:<?= $this->email ?>">Contact</a>
+		</div>
 	</div>
 	
-	<div class="col_4">
-		<p class="label">Territory</p>
-		<p class="territory"><?= $this->region ?></p>
-	</div>
 	
-	<div class="col_5">
-		<a href="mailto:<?= $this->email ?>">Contact</a>
-	</div>
 	
 	<div class="col_dev">
 		
