@@ -1,4 +1,5 @@
 
+var last_state = '';
   
 // When the page is loaded
 $( document ).ready(function() {
@@ -8,6 +9,10 @@ $( document ).ready(function() {
 
         // store our selected state
         var selectedState = this.value;
+        
+        if(last_state != '')
+             $('svg .' + last_state).css("fill", "#d4dbe0");
+        $('svg .' + selectedState).css("fill", "#91b8cd");
         
         // show our product line filter once a state is selected
         if(selectedState != '') {
@@ -39,6 +44,8 @@ $( document ).ready(function() {
                 $(this).fadeOut();
             }
         });
+        
+        last_state = selectedState;
         
     });
     
