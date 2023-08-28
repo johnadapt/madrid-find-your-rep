@@ -151,10 +151,10 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
         'product_line' => array
     		(
     			'label'                   => &$GLOBALS['TL_LANG']['tl_rep']['product_line'],
-    			'inputType'               => 'select',
-                'options'                 => array('' => ' ', 'full_line' => 'Full Line', 'lighting_only' => 'Lighting Only', 'corporate' => 'Corporate'),
-                'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
-                'sql'                     => "varchar(32) NOT NULL default ''"
+    			'inputType'               => 'checkbox',
+    			'options'                 => array('' => ' ', 'full_line' => 'Full Line', 'lighting_only' => 'Lighting Only', 'corporate' => 'Corporate'),
+    			'eval'                    => array('multiple'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
+    			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
         'address' => array
     		(
