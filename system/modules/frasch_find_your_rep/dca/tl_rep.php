@@ -117,7 +117,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
         (
             'sql'                     => "int(10) unsigned NOT NULL default '0'"
         ),
-    		'sorting' => array
+        'sorting' => array
     		(
             'sql'                     => "int(10) unsigned NOT NULL default '0'"
     		),
