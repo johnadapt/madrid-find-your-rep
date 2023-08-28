@@ -68,9 +68,8 @@ $( document ).ready(function() {
         // Loop through each listing
         $( ".rep_list .rep" ).each(function() {
 
-            // If this rep has our selected state in it's class list, show the rep
-            if($(this).data('product-line').includes(selectedProductLine) || selectedProductLine == '') {
-                
+            if(selectedProductLine == '') {
+
                 // Get our selected state
                 var selectedState = $( ".select_your_state option:selected" ).val();
                 
@@ -87,9 +86,31 @@ $( document ).ready(function() {
                     else
                         $(this).hide();
                 }
-
+                
             } else {
-                $(this).hide();
+                // If this rep has our selected state in it's class list, show the rep
+                if($(this).data('product-line').includes(selectedProductLine)) {
+                    
+                    // Get our selected state
+                    var selectedState = $( ".select_your_state option:selected" ).val();
+                    
+                    if(selectedState == '') {
+                        // if our selected state is empty show our listing
+                        $(this).show();
+                        entry_found = true;
+                    } else {
+                        // if we selected a state, make sure the state is in the class list
+                        if($(this).hasClass(selectedState)) {
+                            $(this).show();
+                            entry_found = true;
+                        }
+                        else
+                            $(this).hide();
+                    }
+    
+                } else {
+                    $(this).hide();
+                }
             }
         });
         
