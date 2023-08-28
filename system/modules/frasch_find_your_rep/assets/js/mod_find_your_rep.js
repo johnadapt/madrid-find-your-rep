@@ -1,8 +1,8 @@
 
-var last_state = '';
-  
 // When the page is loaded
 $( document ).ready(function() {
+    
+    var entry_found = false;
     
     // When our 'select_your_state' select changes
     $( ".select_your_state" ).on( "change", function() {
@@ -10,9 +10,8 @@ $( document ).ready(function() {
         // store our selected state
         var selectedState = this.value;
         
-        if(last_state != '')
-             $('svg .' + last_state).css("fill", "#d4dbe0");
-        $('svg .' + selectedState).css("fill", "#91b8cd");
+        // Show our state header
+        $('#state_heading').html($(this).find('option:selected').text());
         
         // show our product line filter once a state is selected
         if(selectedState != '') {
@@ -30,13 +29,19 @@ $( document ).ready(function() {
                 // Get our product line filter value
                 var selectedProductLine = $( ".product_line option:selected" ).val();
                 
-                if(selectedProductLine == '')
+                if(selectedProductLine == '') {
                     // if there is nothing selected then show our rep
                     $(this).show();
+                    entry_found = true;
+                    
+                }
+                    
                 else {
                     // if there is something selected see if it matches our listing
-                    if($(this).data('product-line') == selectedProductLine)
+                    if($(this).data('product-line') == selectedProductLine) {
                         $(this).show();
+                        entry_found = true;
+                    }
                     else
                         $(this).hide();
                 }
@@ -45,13 +50,17 @@ $( document ).ready(function() {
             }
         });
         
-        last_state = selectedState;
+        if(!entry_found)
+            $('#empty').show();
+        else
+            $('#empty').hide();
         
     });
     
     
     // When our 'select_your_state' select changes
     $( ".product_line" ).on( "change", function() {
+        var entry_found = false;
         
         // store our selected product line
         var selectedProductLine = this.value;
@@ -68,10 +77,13 @@ $( document ).ready(function() {
                 if(selectedState == '') {
                     // if our selected state is empty show our listing
                     $(this).show();
+                    entry_found = true;
                 } else {
                     // if we selected a state, make sure the state is in the class list
-                    if($(this).hasClass(selectedState))
+                    if($(this).hasClass(selectedState)) {
                         $(this).show();
+                        entry_found = true;
+                    }
                     else
                         $(this).hide();
                 }
@@ -80,6 +92,11 @@ $( document ).ready(function() {
                 $(this).hide();
             }
         });
+        
+        if(!entry_found)
+            $('#empty').show();
+        else
+            $('#empty').hide();
 
     });
     
