@@ -71,8 +71,8 @@ class Reps extends \Backend
 	}
 
 	function getStates()
-    	{		
-        	return array(
+    {		
+        return array(
 			'United States' => array(
 				'alabama' => 'Alabama',
 				'alaska' => 'Alaska',
@@ -139,4 +139,15 @@ class Reps extends \Backend
 				'saskatchewan' => 'Saskatchewan'),
 		);
 	}
+
+    function getProductLines()
+    {		
+        return array(
+			'United States' => array(
+				'full_line' => 'Full Line',
+				'lighting_only' => 'Lighting Only',
+				'corporate' => 'Corporate'
+		);
+	}
+    
 }
