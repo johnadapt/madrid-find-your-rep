@@ -139,15 +139,5 @@ class Reps extends \Backend
 				'saskatchewan' => 'Saskatchewan'),
 		);
 	}
-
-    function getProductLines()
-    {		
-        return array(
-			'United States' => array(
-				'full_line' => 'Full Line',
-				'lighting_only' => 'Lighting Only',
-				'corporate' => 'Corporate'
-		);
-	}
     
 }
