@@ -38,7 +38,7 @@ $( document ).ready(function() {
                     
                 else {
                     // if there is something selected see if it matches our listing
-                    if($(this).data('product-line') == selectedProductLine) {
+                    if($(this).data('product-line').includes(selectedProductLine)) {
                         $(this).show();
                         entry_found = true;
                     }
@@ -69,7 +69,7 @@ $( document ).ready(function() {
         $( ".rep_list .rep" ).each(function() {
 
             // If this rep has our selected state in it's class list, show the rep
-            if($(this).data('product-line') == selectedProductLine) {
+            if($(this).data('product-line').includes(selectedProductLine)) {
                 
                 // Get our selected state
                 var selectedState = $( ".select_your_state option:selected" ).val();
