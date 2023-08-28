@@ -3,9 +3,14 @@
 	foreach($this->state as $state) {
 		$class_states .= $state . ' ';
 	}
+
+	$class_product_line = '';
+	foreach($this->product_line as $product_line) {
+		$class_product_line .= $product_line . ' ';
+	}
 ?>
 
-<div class="rep <?= $class_states ?>" style="display: none;" data-product-line="<?= $this->product_line ?>">
+<div class="rep <?= $class_states ?>" style="display: none;" data-product-line="<?= $class_product_line ?>">
 	
 	<div class="col_1">
 		<h3 class="rep_name"><?= $this->rep_name ?></h3>
