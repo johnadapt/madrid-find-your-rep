@@ -3,7 +3,7 @@
 	foreach($this->state as $state) {
 		$class_states .= $state . ' ';
 	}
-
+	
 	$class_product_line = '';
 	foreach($this->product_line as $product_line) {
 		$class_product_line .= $product_line . ' ';
