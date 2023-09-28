@@ -70,7 +70,8 @@ class ModFindYourRep extends \Contao\Module
 		  $objLocation = Rep::findBy('published', '1');
 
         if (!in_array('system/modules/frasch_find_your_rep/assets/js/mod_find_your_rep.js', $GLOBALS['TL_JAVASCRIPT'])) { 
-            $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/frasch_find_your_rep/assets/js/mod_find_your_rep.js';
+            $rand_ver = rand(1,9999);
+            $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/frasch_find_your_rep/assets/js/mod_find_your_rep.js?v='.$rand_ver;
         }
 		
 
