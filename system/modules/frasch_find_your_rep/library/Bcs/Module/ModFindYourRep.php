@@ -67,14 +67,10 @@ class ModFindYourRep extends \Contao\Module
      */
     protected function compile()
     {
-		  $objLocation = Rep::findBy('published', '1');
+        $objLocation = Rep::findBy('published', '1');
 
-        if (!in_array('system/modules/frasch_find_your_rep/assets/js/mod_find_your_rep.js', $GLOBALS['TL_JAVASCRIPT'])) { 
-            $rand_ver = rand(1,9999);
-            $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/frasch_find_your_rep/assets/js/mod_find_your_rep.js?v='.$rand_ver;
-        }
-		
-
+        $rand_ver = rand(1,9999);
+        $GLOBALS['TL_BODY']['isotope_spec_sheet_pdf'] = '<script src="system/modules/frasch_find_your_rep/assets/js/mod_find_your_rep.js?v='.$rand_ver.'"></script>';
 		
   		// Return if no pending items were found
   		if (!$objLocation)
