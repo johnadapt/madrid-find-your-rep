@@ -102,6 +102,9 @@
 			foreach($this->reps as $rep) {
 				echo $rep;
 			}
+			foreach($this->reps_corporate as $rep) {
+				echo $rep;
+			}
 		?>
 	</div>
   
