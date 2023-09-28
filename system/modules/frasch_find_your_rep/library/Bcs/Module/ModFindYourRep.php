@@ -82,17 +82,27 @@ class ModFindYourRep extends \Contao\Module
   			return;
   		}
 
+        // Stores all of our Reps, besides corporate
 		$arrReps = array();
-        $rep_id = 0;
+		$rep_id = 0;
+		
+		// Stores all corporate Reps
+		$arrRepsCorporate = array();
+        $corp_rep_id = 0;
 		
 		// Generate List
 		while ($objLocation->next())
 		{
             
-			$arrLocation['rep_name'] 			= $objLocation->rep_name;
+            $arrLocation = array();
+             
+            // check if our product_line data contains corporate
+            $product_line = unserialize($objLocation->product_line);
+            
+            
+            $arrLocation['rep_name'] 			= $objLocation->rep_name;
 			$arrLocation['company_name']		= $objLocation->company_name;
 			$arrLocation['region']              = $objLocation->region;
-			$arrLocation['product_line']        = unserialize($objLocation->product_line);
 			$arrLocation['address'] 			= $objLocation->address;
 			$arrLocation['city']                = $objLocation->city;
             $arrLocation['zip']                 = $objLocation->zip;
@@ -100,16 +110,30 @@ class ModFindYourRep extends \Contao\Module
             $arrLocation['alt_phone_number']    = $objLocation->alt_phone_number;
             $arrLocation['email']               = $objLocation->email;
             $arrLocation['website'] 			= $objLocation->website;
-			
+            $arrLocation['product_line']        = $product_line;
 			$arrLocation['state']               = unserialize($objLocation->state);
+            
+            if(str_contains($objLocation->product_line, 'corporate')) {
+                
+    			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
+    			$objTemplate = new \FrontendTemplate($strItemTemplate);
+    			$objTemplate->setData($arrLocation);
+    			$arrRepsCorporate[$corp_rep_id] = $objTemplate->parse();
+                $corp_rep_id++;
+                
+            } else {
+    
+    			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
+    			$objTemplate = new \FrontendTemplate($strItemTemplate);
+    			$objTemplate->setData($arrLocation);
+    			$arrReps[$rep_id] = $objTemplate->parse();
+                $rep_id++;
+                    
+            }
 
-			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
-			$objTemplate = new \FrontendTemplate($strItemTemplate);
-			$objTemplate->setData($arrLocation);
-			$arrReps[$rep_id] = $objTemplate->parse();
-            $rep_id++;
 		}
 
+        $this->Template->reps_corporate = $arrRepsCorporate;
         $this->Template->reps = $arrReps;
 		
 	}
@@ -134,10 +158,7 @@ class ModFindYourRep extends \Contao\Module
 	}
 	
 	
-	
-	
-	
-	
+	/** Utility function to get an array of our States */
 	function getStates()
     	{		
         	return array(
