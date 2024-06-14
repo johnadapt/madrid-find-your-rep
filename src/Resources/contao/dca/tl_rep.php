@@ -18,7 +18,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     // Config
     'config' => array
     (
-        'dataContainer'               => 'Table',
+        'dataContainer'               => \Contao\DC_Table::class,
         'enableVersioning'            => true,
         'sql' => array
         (
