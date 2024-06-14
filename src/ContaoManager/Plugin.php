@@ -5,7 +5,7 @@
  * @author     Bright Cloud Studio
  * @package    Contao CE Glide
  * @license    LGPL-3.0+
- * @see	       https://github.com/bright-cloud-studio/contao-ce-recaptcha
+ * @see	       https://github.com/johnadapt/madrid-find-your-rep
  */
 
 namespace Bcs\MadridFindRepBundle\ContaoManager;
