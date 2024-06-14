@@ -1,8 +1,8 @@
 {
-    "name":"bright-cloud-studio/frasch-find-your-rep",
-    "description":"A custom version of our Rep Locator package for Frasch",
+    "name":"bright-cloud-studio/madrid-find-your-rep",
+    "description":"A custom version of our Rep Locator package for Madrid",
     "homepage": "http://brightcloudstudio.com/",
-    "keywords":["frasch", "find", "your", "rep", "bright", "cloud", "studio"],
+    "keywords":["madrid", "find", "your", "rep", "bright", "cloud", "studio"],
     "type":"contao-module",
     "license":"LGPL-3.0-or-later",
     "authors":[
@@ -13,7 +13,7 @@
     ],
     "require":{
         "php": "^8.0",
-        "contao/core-bundle": "^4.13"
+        "contao/core-bundle": "^5.3"
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0"
@@ -21,14 +21,14 @@
     "autoload": {
         "psr-4": {
             "Bcs\\": [
-                "system/modules/frasch_find_your_rep/library/Bcs"
+                "system/modules/madrid_find_your_rep/library/Bcs"
             ]
         }
     },
     "extra": {
         "contao": {
             "sources": {
-                "system/modules/frasch_find_your_rep": "system/modules/frasch_find_your_rep"
+                "system/modules/madrid_find_your_rep": "system/modules/madrid_find_your_rep"
             }
         }
     },

@@ -5,7 +5,7 @@
  *
  * Copyright (C) 2023 Bright Cloud Studio
  *
- * @package    bright-cloud-studio/frasch-find-your-rep
+ * @package    bright-cloud-studio/madrid-find-your-rep
  * @link       https://www.brightcloudstudio.com/
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
@@ -16,7 +16,7 @@ $GLOBALS['BE_MOD']['content']['reps'] = array(
 );
 
 /* Front end modules */
-$GLOBALS['FE_MOD']['frasch_find_your_rep']['mod_find_your_rep'] 	= 'Bcs\Module\ModFindYourRep';
+$GLOBALS['FE_MOD']['madrid_find_your_rep']['mod_find_your_rep'] 	= 'Bcs\Module\ModFindYourRep';
 
 /* Models */
 $GLOBALS['TL_MODELS']['tl_rep'] = 'Bcs\Model\Rep';

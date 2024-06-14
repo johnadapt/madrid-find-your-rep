@@ -5,7 +5,7 @@
  *
  * Copyright (C) 2023 Bright Cloud Studio
  *
- * @package    bright-cloud-studio/frasch-find-your-rep
+ * @package    bright-cloud-studio/madrid-find-your-rep
  * @link       https://www.brightcloudstudio.com/
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
@@ -70,7 +70,7 @@ class ModFindYourRep extends \Contao\Module
         $objLocation = Rep::findBy('published', '1');
 
         $rand_ver = rand(1,9999);
-        $GLOBALS['TL_BODY']['isotope_spec_sheet_pdf'] = '<script src="system/modules/frasch_find_your_rep/assets/js/mod_find_your_rep.js?v='.$rand_ver.'"></script>';
+        $GLOBALS['TL_BODY']['isotope_spec_sheet_pdf'] = '<script src="system/modules/madrid_find_your_rep/assets/js/mod_find_your_rep.js?v='.$rand_ver.'"></script>';
 		
   		// Return if no pending items were found
   		if (!$objLocation)

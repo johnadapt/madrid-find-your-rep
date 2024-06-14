@@ -5,7 +5,7 @@
  *
  * Copyright (C) 2023 Bright Cloud Studio
  *
- * @package    bright-cloud-studio/frasch-find-your-rep
+ * @package    bright-cloud-studio/madrid-find-your-rep
  * @link       https://www.brightcloudstudio.com/
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
@@ -51,7 +51,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
             (
                 'label'               => 'Export Reps CSV',
                 'href'                => 'key=exportReps',
-                'icon'                => 'system/modules/frasch_find_your_rep/assets/icons/file-export-icon-16.png'
+                'icon'                => 'system/modules/madrid_find_your_rep/assets/icons/file-export-icon-16.png'
             ),
             'all' => array
             (
