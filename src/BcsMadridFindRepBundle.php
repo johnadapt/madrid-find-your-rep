@@ -12,6 +12,6 @@ namespace Bcs\MadridFindRepBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class MadridFindRepBundle extends Bundle
+class BcsMadridFindRepBundle extends Bundle
 {
 }
