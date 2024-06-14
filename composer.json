@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Bcs\\RecaptchaBundle\\": "src"
+            "Bcs\\MadridFindRepBundle\\": "src"
         },
         "classmap": [
             "src/Resources/contao"
