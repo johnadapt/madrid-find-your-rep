@@ -1,36 +1,43 @@
 {
     "name":"bright-cloud-studio/madrid-find-your-rep",
     "description":"A custom version of our Rep Locator package for Madrid",
-    "homepage": "http://brightcloudstudio.com/",
     "keywords":["madrid", "find", "your", "rep", "bright", "cloud", "studio"],
-    "type":"contao-module",
-    "license":"LGPL-3.0-or-later",
+    "type": "contao-bundle",
+    "homepage": "http://brightcloudstudio.com/",
+    "license": "LGPL-3.0+",
     "authors":[
         {
-            "name":"Bright Cloud Studio",
-            "homepage":"https://brightcloudstudio.com"
+            "name": "Bright Cloud Studio",
+            "homepage": "https://brightcloudstudio.com",
+            "email": "john@brightcloudstudio.com",
+            "role": "Developer"
         }
     ],
-    "require":{
-        "php": "^8.0",
-        "contao/core-bundle": "^5.3"
+    "support":{
+        "issues": "https://github.com/johnadapt/madrid-find-your-rep/issues",
+        "source": "https://github.com/johnadapt/madrid-find-your-rep"
     },
-    "require-dev": {
-        "contao/manager-plugin": "^2.0"
+    "require":{
+        "php": "^7.3 || ^8.0",
+        "contao/core-bundle": "^4.9 || ^5.3"
+    },
+    "extra":{
+        "contao-manager-plugin": "Bcs\\MadridFindRepBundle\\ContaoManager\\Plugin"
     },
     "autoload": {
         "psr-4": {
-            "Bcs\\": [
-                "system/modules/madrid_find_your_rep/library/Bcs"
-            ]
-        }
-    },
-    "extra": {
-        "contao": {
-            "sources": {
-                "system/modules/madrid_find_your_rep": "system/modules/madrid_find_your_rep"
-            }
-        }
-    },
-    "minimum-stability": "dev"
+            "Bcs\\RecaptchaBundle\\": "src"
+        },
+        "classmap": [
+            "src/Resources/contao"
+        ],
+        "exclude-from-classmap": [
+            // "src/Resources/contao/assets/",
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            // "src/Resources/contao/library/",
+            "src/Resources/contao/templates/"
+        ]
+    }
 }
