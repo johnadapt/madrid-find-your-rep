@@ -11,6 +11,7 @@
  */
 
 namespace Bcs\Model;
+use Contao\Model;
 
 class Rep extends \Model
 {
