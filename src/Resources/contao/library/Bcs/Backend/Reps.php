@@ -14,7 +14,9 @@
 namespace Bcs\Backend;
 
 use Contao\DataContainer;
+use Contao\Backend;
 use Bcs\Model\Rep;
+
 
 class Reps extends \Backend
 {
