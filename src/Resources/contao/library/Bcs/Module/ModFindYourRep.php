@@ -45,7 +45,7 @@ class ModFindYourRep extends \Contao\Module
      */
     public function generate()
     {
-        if (TL_MODE == 'BE')
+        if (System::getContainer()->getParameter('kernel.project_dir') == 'BE')
         {
             $objTemplate = new \BackendTemplate('be_wildcard');
  
