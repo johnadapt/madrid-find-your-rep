@@ -15,6 +15,9 @@ namespace Bcs\Backend;
 
 use Contao\DataContainer;
 use Contao\Backend;
+use Contao\Input;
+use Contao\Image;
+use Contao\StringUtil;
 use Bcs\Model\Rep;
 
 
@@ -29,9 +32,9 @@ class Reps extends Backend
 	
 	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
 	{
-		if (strlen(\Input::get('tid')))
+		if (strlen(Input::get('tid')))
 		{
-			$this->toggleVisibility(\Input::get('tid'), (\Input::get('state') == 1), (@func_get_arg(12) ?: null));
+			$this->toggleVisibility(Input::get('tid'), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
 			$this->redirect($this->getReferer());
 		}
 
@@ -42,7 +45,7 @@ class Reps extends Backend
 			$icon = 'invisible.gif';
 		}
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.\Image::getHtml($icon, $label).'</a> ';
+		return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
 	}	
 	
 
@@ -128,17 +131,17 @@ class Reps extends Backend
 				'wyoming' => 'Wyoming',
                 'washington_dc' => 'Washington, D.C.',
 				'puerto_rico' => 'Puerto Rico'),
-			// 'Canada' => array(
-			// 	'alberta' => 'Alberta',
-			// 	'british_columbia' => 'British Columbia',
-            //     'manitoba' => 'Manitoba',
-			// 	'new_brunswick' => 'New Brunswick',
-            //     'newfoundland' => 'Newfoundland',
-			// 	'nova_scotia' => 'Nova Scotia',
-            //     'ontario' => 'Ontario',
-            //     'prince_edward_island' => 'Prince Edward Island',
-			// 	'quebec' => 'Quebec',
-			// 	'saskatchewan' => 'Saskatchewan'),
+// 			'Canada' => array(
+// 				'alberta' => 'Alberta',
+// 				'british_columbia' => 'British Columbia',
+//                 'manitoba' => 'Manitoba',
+// 				'new_brunswick' => 'New Brunswick',
+//                 'newfoundland' => 'Newfoundland',
+// 				'nova_scotia' => 'Nova Scotia',
+//                 'ontario' => 'Ontario',
+//                 'prince_edward_island' => 'Prince Edward Island',
+// 				'quebec' => 'Quebec',
+// 				'saskatchewan' => 'Saskatchewan'),
 		);
 	}
     

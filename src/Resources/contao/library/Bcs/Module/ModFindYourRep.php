@@ -16,6 +16,8 @@ namespace Bcs\Module;
 use Bcs\Model\Rep;
 use Bcs\Reps; 
 use Contao\System;
+use Contao\FrontendTemplate;
+
  
 class ModFindYourRep extends \Contao\Module
 {
@@ -71,7 +73,7 @@ class ModFindYourRep extends \Contao\Module
         $objLocation = Rep::findBy('published', '1');
 
         $rand_ver = rand(1,9999);
-        $GLOBALS['TL_BODY']['isotope_spec_sheet_pdf'] = '<script src="system/modules/madrid_find_your_rep/assets/js/mod_find_your_rep.js?v='.$rand_ver.'"></script>';
+        $GLOBALS['TL_BODY']['isotope_spec_sheet_pdf'] = '<script src="bundles/bcsmadridfindrep/js/mod_find_your_rep.js?v='.$rand_ver.'"></script>';
 		
   		// Return if no pending items were found
   		if (!$objLocation)
@@ -114,7 +116,7 @@ class ModFindYourRep extends \Contao\Module
             if(str_contains($objLocation->product_line, 'corporate')) {
                 
     			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
-    			$objTemplate = new \FrontendTemplate($strItemTemplate);
+    			$objTemplate = new FrontendTemplate($strItemTemplate);
     			$objTemplate->setData($arrLocation);
     			$arrRepsCorporate[$corp_rep_id] = $objTemplate->parse();
                 $corp_rep_id++;
@@ -122,7 +124,7 @@ class ModFindYourRep extends \Contao\Module
             } else {
     
     			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
-    			$objTemplate = new \FrontendTemplate($strItemTemplate);
+    			$objTemplate = new FrontendTemplate($strItemTemplate);
     			$objTemplate->setData($arrLocation);
     			$arrReps[$rep_id] = $objTemplate->parse();
                 $rep_id++;
@@ -138,14 +140,15 @@ class ModFindYourRep extends \Contao\Module
 
 	public function generateSelectOptions($blank = TRUE) {
 		$strUnitedStates = '<optgroup label="United States">';
-		// $strCanada = '<optgroup label="Canada"><option value="CAN">All Provinces</option></optgroup>';
+// 		$strCanada = '<optgroup label="Canada"><option value="CAN">All Provinces</option></optgroup>';
 		foreach ($this->arrStates['United States'] as $abbr => $state) {
-			if (!in_array($objLocation->state, array('AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'))) {
-				$strUnitedStates .= '<option value="' .$abbr .'">' .$state .'</option>';
-			}
+		    $strUnitedStates .= '<option value="' .$abbr .'">' .$state .'</option>';
+// 			if (!in_array($objLocation->state, array('AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'))) {
+// 				$strUnitedStates .= '<option value="' .$abbr .'">' .$state .'</option>';
+// 			}
 		}
 		$strUnitedStates .= '</optgroup>';
-		// return ($blank ? '<option value="">Select Location...</option>' : '') .$strUnitedStates .$strCanada;
+// 		return ($blank ? '<option value="">Select Location...</option>' : '') .$strUnitedStates .$strCanada;
 		return ($blank ? '<option value="">Select Location...</option>' : '') .$strUnitedStates;
 	}
 	
@@ -214,17 +217,17 @@ class ModFindYourRep extends \Contao\Module
 				'wyoming' => 'Wyoming',
                 'washington_dc' => 'Washington, D.C.',
 				'puerto_rico' => 'Puerto Rico'),
-			// 'Canada' => array(
-			// 	'alberta' => 'Alberta',
-			// 	'british_columbia' => 'British Columbia',
-            //     'manitoba' => 'Manitoba',
-			// 	'new_brunswick' => 'New Brunswick',
-            //     'newfoundland' => 'Newfoundland',
-			// 	'nova_scotia' => 'Nova Scotia',
-            //     'ontario' => 'Ontario',
-            //     'prince_edward_island' => 'Prince Edward Island',
-			// 	'quebec' => 'Quebec',
-			// 	'saskatchewan' => 'Saskatchewan'),
+// 			'Canada' => array(
+// 				'alberta' => 'Alberta',
+// 				'british_columbia' => 'British Columbia',
+//                 'manitoba' => 'Manitoba',
+// 				'new_brunswick' => 'New Brunswick',
+//                 'newfoundland' => 'Newfoundland',
+// 				'nova_scotia' => 'Nova Scotia',
+//                 'ontario' => 'Ontario',
+//                 'prince_edward_island' => 'Prince Edward Island',
+// 				'quebec' => 'Quebec',
+// 				'saskatchewan' => 'Saskatchewan'),
 		);
 	}
 

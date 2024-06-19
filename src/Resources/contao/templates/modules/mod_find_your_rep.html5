@@ -61,7 +61,7 @@
 					<option value="washington_dc">Washington, D.C.</option>
 					<option value="puerto_rico">Puerto Rico</option>
 				</optgroup>
-				/*<optgroup label="Canada">
+			<--	<optgroup label="Canada">
 					<option value="alberta">Alberta</option>
 					<option value="british_columbia">British Columbia</option>
 					<option value="manitoba">Manitoba</option>
@@ -72,11 +72,11 @@
 					<option value="prince_edward_island">Prince Edward Island</option>
 					<option value="quebec">Quebec</option>
 					<option value="saskatchewan">Saskatchewan</option>
-				</optgroup>*/
+				</optgroup> -->
 			</select>
 		</div>
 		
-		/*<div class="select_product_line">
+		<--	<div class="select_product_line">
 			<h2>Select the Product Line</h2>
 			<select class="product_line">
 				<option value="">Select the Product Line</option>
@@ -84,7 +84,7 @@
 				<option value="lighting_only">Lighting Only</option>
 				<option value="corporate">Corporate</option>
 			</select>
-		</div>*/
+		</div> -->
 		
 		
 		
