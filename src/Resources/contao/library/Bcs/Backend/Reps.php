@@ -18,7 +18,7 @@ use Contao\Backend;
 use Bcs\Model\Rep;
 
 
-class Reps extends \Backend
+class Reps extends Backend
 {
 
 	public function getItemTemplates()
@@ -128,17 +128,17 @@ class Reps extends \Backend
 				'wyoming' => 'Wyoming',
                 'washington_dc' => 'Washington, D.C.',
 				'puerto_rico' => 'Puerto Rico'),
-			'Canada' => array(
-				'alberta' => 'Alberta',
-				'british_columbia' => 'British Columbia',
-                'manitoba' => 'Manitoba',
-				'new_brunswick' => 'New Brunswick',
-                'newfoundland' => 'Newfoundland',
-				'nova_scotia' => 'Nova Scotia',
-                'ontario' => 'Ontario',
-                'prince_edward_island' => 'Prince Edward Island',
-				'quebec' => 'Quebec',
-				'saskatchewan' => 'Saskatchewan'),
+			// 'Canada' => array(
+			// 	'alberta' => 'Alberta',
+			// 	'british_columbia' => 'British Columbia',
+            //     'manitoba' => 'Manitoba',
+			// 	'new_brunswick' => 'New Brunswick',
+            //     'newfoundland' => 'Newfoundland',
+			// 	'nova_scotia' => 'Nova Scotia',
+            //     'ontario' => 'Ontario',
+            //     'prince_edward_island' => 'Prince Edward Island',
+			// 	'quebec' => 'Quebec',
+			// 	'saskatchewan' => 'Saskatchewan'),
 		);
 	}
     

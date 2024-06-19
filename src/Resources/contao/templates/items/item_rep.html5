@@ -4,10 +4,10 @@
 		$class_states .= $state . ' ';
 	}
 	
-	$class_product_line = '';
-	foreach($this->product_line as $product_line) {
-		$class_product_line .= $product_line . ' ';
-	}
+	// $class_product_line = '';
+	// foreach($this->product_line as $product_line) {
+	// 	$class_product_line .= $product_line . ' ';
+	// }
 ?>
 
 <div class="rep <?= $class_states ?>" style="display: none;" data-product-line="<?= $class_product_line ?>">
@@ -65,12 +65,12 @@
 			</p>
 		</div>
 		
-		<div class="wrapper">
+<!-- 		<div class="wrapper">
 			<p class="label">Product Line</p>
 			<p class="product_line">
-				<?= $this->product_line ?>
+				<?//= $this->product_line ?>
 			</p>
-		</div>
+		</div> -->
 		
 	</div>
 	

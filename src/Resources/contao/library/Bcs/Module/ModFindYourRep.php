@@ -138,14 +138,15 @@ class ModFindYourRep extends \Contao\Module
 
 	public function generateSelectOptions($blank = TRUE) {
 		$strUnitedStates = '<optgroup label="United States">';
-		$strCanada = '<optgroup label="Canada"><option value="CAN">All Provinces</option></optgroup>';
+		// $strCanada = '<optgroup label="Canada"><option value="CAN">All Provinces</option></optgroup>';
 		foreach ($this->arrStates['United States'] as $abbr => $state) {
 			if (!in_array($objLocation->state, array('AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'))) {
 				$strUnitedStates .= '<option value="' .$abbr .'">' .$state .'</option>';
 			}
 		}
 		$strUnitedStates .= '</optgroup>';
-		return ($blank ? '<option value="">Select Location...</option>' : '') .$strUnitedStates .$strCanada;
+		// return ($blank ? '<option value="">Select Location...</option>' : '') .$strUnitedStates .$strCanada;
+		return ($blank ? '<option value="">Select Location...</option>' : '') .$strUnitedStates;
 	}
 	
 	function sortByState($a, $b) {
@@ -213,17 +214,17 @@ class ModFindYourRep extends \Contao\Module
 				'wyoming' => 'Wyoming',
                 'washington_dc' => 'Washington, D.C.',
 				'puerto_rico' => 'Puerto Rico'),
-			'Canada' => array(
-				'alberta' => 'Alberta',
-				'british_columbia' => 'British Columbia',
-                'manitoba' => 'Manitoba',
-				'new_brunswick' => 'New Brunswick',
-                'newfoundland' => 'Newfoundland',
-				'nova_scotia' => 'Nova Scotia',
-                'ontario' => 'Ontario',
-                'prince_edward_island' => 'Prince Edward Island',
-				'quebec' => 'Quebec',
-				'saskatchewan' => 'Saskatchewan'),
+			// 'Canada' => array(
+			// 	'alberta' => 'Alberta',
+			// 	'british_columbia' => 'British Columbia',
+            //     'manitoba' => 'Manitoba',
+			// 	'new_brunswick' => 'New Brunswick',
+            //     'newfoundland' => 'Newfoundland',
+			// 	'nova_scotia' => 'Nova Scotia',
+            //     'ontario' => 'Ontario',
+            //     'prince_edward_island' => 'Prince Edward Island',
+			// 	'quebec' => 'Quebec',
+			// 	'saskatchewan' => 'Saskatchewan'),
 		);
 	}
 
