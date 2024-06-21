@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{rep_legend},rep_name,company_name,region,product_line,address,city,adress_state,zip,phone_number,alt_phone_number,email,website;{state_legend},state;{publish_legend},published;'
+        'default'                     => '{rep_legend},rep_name,company_name,region,product_line,address,city,address_state,zip,phone_number,alt_phone_number,email,website;{state_legend},state;{publish_legend},published;'
     ),
  
     // Fields

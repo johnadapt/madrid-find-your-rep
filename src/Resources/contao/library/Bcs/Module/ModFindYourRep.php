@@ -101,7 +101,7 @@ class ModFindYourRep extends \Contao\Module
 			$arrLocation['region']              = $objLocation->region;
 			$arrLocation['address'] 			= $objLocation->address;
 			$arrLocation['city']                = $objLocation->city;
-			$arrLocation['address_state'] 			= $objLocation->address_state;
+			$arrLocation['address_state'] 		= $objLocation->address_state;
             $arrLocation['zip']                 = $objLocation->zip;
             $arrLocation['phone_number']        = $objLocation->phone_number;
             $arrLocation['alt_phone_number']    = $objLocation->alt_phone_number;
@@ -109,11 +109,11 @@ class ModFindYourRep extends \Contao\Module
             $arrLocation['website'] 			= $objLocation->website;
             $arrLocation['product_line']        = $product_line;
 			$arrLocation['state']               = unserialize($objLocation->state);
-    			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
-    			$objTemplate = new FrontendTemplate($strItemTemplate);
-    			$objTemplate->setData($arrLocation);
-    			$arrReps[$rep_id] = $objTemplate->parse();
-                $rep_id++;
+			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
+			$objTemplate = new FrontendTemplate($strItemTemplate);
+			$objTemplate->setData($arrLocation);
+			$arrReps[$rep_id] = $objTemplate->parse();
+            $rep_id++;
 
 		}
 
