@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{rep_legend},rep_name,company_name,region,product_line,address,city,zip,phone_number,alt_phone_number,email,website;{state_legend},state;{publish_legend},published;'
+        'default'                     => '{rep_legend},rep_name,company_name,region,product_line,address,city,adress_state,zip,phone_number,alt_phone_number,email,website;{state_legend},state;{publish_legend},published;'
     ),
  
     // Fields
@@ -148,14 +148,6 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
     			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
     			'sql'                     => "varchar(255) NOT NULL default ''"
     		),
-        'product_line' => array
-    		(
-    			'label'                   => &$GLOBALS['TL_LANG']['tl_rep']['product_line'],
-    			'inputType'               => 'checkbox',
-    			'options'                 => array('' => ' ', 'full_line' => 'Full Line', 'lighting_only' => 'Lighting Only', 'corporate' => 'Corporate'),
-    			'eval'                    => array('multiple'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
-    			'sql'                     => "varchar(255) NOT NULL default ''"
-    		),
         'address' => array
     		(
     			'label'                   => &$GLOBALS['TL_LANG']['tl_rep']['address'],
@@ -168,6 +160,15 @@ $GLOBALS['TL_DCA']['tl_rep'] = array
         'city' => array
     		(
     			'label'                   => &$GLOBALS['TL_LANG']['tl_rep']['city'],
+    			'inputType'               => 'text',
+    			'default'                 => '',
+    			'search'                  => true,
+    			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
+    			'sql'                     => "varchar(255) NOT NULL default ''"
+    		),
+        'address_state' => array
+    		(
+    			'label'                   => &$GLOBALS['TL_LANG']['tl_rep']['address_state'],
     			'inputType'               => 'text',
     			'default'                 => '',
     			'search'                  => true,

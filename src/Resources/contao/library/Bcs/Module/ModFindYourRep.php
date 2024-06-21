@@ -86,10 +86,6 @@ class ModFindYourRep extends \Contao\Module
 		$arrReps = array();
 		$rep_id = 0;
 		
-		// Stores all corporate Reps
-		$arrRepsCorporate = array();
-        $corp_rep_id = 0;
-		
 		// Generate List
 		while ($objLocation->next())
 		{
@@ -105,6 +101,7 @@ class ModFindYourRep extends \Contao\Module
 			$arrLocation['region']              = $objLocation->region;
 			$arrLocation['address'] 			= $objLocation->address;
 			$arrLocation['city']                = $objLocation->city;
+			$arrLocation['address_state'] 			= $objLocation->address_state;
             $arrLocation['zip']                 = $objLocation->zip;
             $arrLocation['phone_number']        = $objLocation->phone_number;
             $arrLocation['alt_phone_number']    = $objLocation->alt_phone_number;
@@ -112,43 +109,25 @@ class ModFindYourRep extends \Contao\Module
             $arrLocation['website'] 			= $objLocation->website;
             $arrLocation['product_line']        = $product_line;
 			$arrLocation['state']               = unserialize($objLocation->state);
-            
-            if(str_contains($objLocation->product_line, 'corporate')) {
-                
-    			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
-    			$objTemplate = new FrontendTemplate($strItemTemplate);
-    			$objTemplate->setData($arrLocation);
-    			$arrRepsCorporate[$corp_rep_id] = $objTemplate->parse();
-                $corp_rep_id++;
-                
-            } else {
-    
     			$strItemTemplate = ($this->locations_customItemTpl != '' ? $this->locations_customItemTpl : 'item_rep');
     			$objTemplate = new FrontendTemplate($strItemTemplate);
     			$objTemplate->setData($arrLocation);
     			$arrReps[$rep_id] = $objTemplate->parse();
                 $rep_id++;
-                    
-            }
 
 		}
 
-        $this->Template->reps_corporate = $arrRepsCorporate;
         $this->Template->reps = $arrReps;
 		
 	}
 
 	public function generateSelectOptions($blank = TRUE) {
 		$strUnitedStates = '<optgroup label="United States">';
-// 		$strCanada = '<optgroup label="Canada"><option value="CAN">All Provinces</option></optgroup>';
 		foreach ($this->arrStates['United States'] as $abbr => $state) {
 		    $strUnitedStates .= '<option value="' .$abbr .'">' .$state .'</option>';
-// 			if (!in_array($objLocation->state, array('AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'))) {
-// 				$strUnitedStates .= '<option value="' .$abbr .'">' .$state .'</option>';
-// 			}
+
 		}
 		$strUnitedStates .= '</optgroup>';
-// 		return ($blank ? '<option value="">Select Location...</option>' : '') .$strUnitedStates .$strCanada;
 		return ($blank ? '<option value="">Select Location...</option>' : '') .$strUnitedStates;
 	}
 	
@@ -217,17 +196,6 @@ class ModFindYourRep extends \Contao\Module
 				'wyoming' => 'Wyoming',
                 'washington_dc' => 'Washington, D.C.',
 				'puerto_rico' => 'Puerto Rico'),
-// 			'Canada' => array(
-// 				'alberta' => 'Alberta',
-// 				'british_columbia' => 'British Columbia',
-//                 'manitoba' => 'Manitoba',
-// 				'new_brunswick' => 'New Brunswick',
-//                 'newfoundland' => 'Newfoundland',
-// 				'nova_scotia' => 'Nova Scotia',
-//                 'ontario' => 'Ontario',
-//                 'prince_edward_island' => 'Prince Edward Island',
-// 				'quebec' => 'Quebec',
-// 				'saskatchewan' => 'Saskatchewan'),
 		);
 	}
 
