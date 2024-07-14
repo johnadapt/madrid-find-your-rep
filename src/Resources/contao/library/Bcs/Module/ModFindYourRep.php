@@ -73,7 +73,13 @@ class ModFindYourRep extends \Contao\Module
         $objLocation = Rep::findBy('published', '1');
 
         $rand_ver = rand(1,9999);
-        $GLOBALS['TL_BODY']['isotope_spec_sheet_pdf'] = '<script src="bundles/bcsmadridfindrep/js/mod_find_your_rep.js?v='.$rand_ver.'"></script>';
+        $GLOBALS['TL_BODY']['find_your_rep'] = '<script src="bundles/bcsmadridfindrep/js/mod_find_your_rep.js?v='.$rand_ver.'"></script>';
+		$GLOBALS['TL_JAVASCRIPT']['map_js_base'] = 'bundles/bcsmadridfindrep/js/raphael.min.js';
+		$GLOBALS['TL_JAVASCRIPT']['map_js_settings'] = 'bundles/bcsmadridfindrep/js/settings.js';
+		$GLOBALS['TL_JAVASCRIPT']['map_js_paths'] = 'bundles/bcsmadridfindrep/js/paths.js';
+		$GLOBALS['TL_JAVASCRIPT']['map_js_map'] = 'bundles/bcsmadridfindrep/js/map.js';
+		$GLOBALS['TL_JAVASCRIPT']['map_js_init'] = 'bundles/bcsmadridfindrep/js/initialize.js';
+        $GLOBALS['TL_CSS']['maps'] = 'bundles/bcsmadridfindrep/css/map.css';
 		
   		// Return if no pending items were found
   		if (!$objLocation)

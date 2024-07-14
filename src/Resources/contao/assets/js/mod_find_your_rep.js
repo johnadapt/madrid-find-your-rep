@@ -1,50 +1,50 @@
 
 // When the page is loaded
 $( document ).ready(function() {
-    
+    console.log('test1');
     var entry_found = false;
     
     // When our 'select_your_state' select changes
     $( ".select_your_state" ).on( "change", function() {
-
+    
         // store our selected state
         var selectedState = this.value;
-        
+        console.log(selectedState);
         // Show our state header
         $('#state_heading').html($(this).find('option:selected').text());
-        
-        // show our product line filter once a state is selected
-        if(selectedState != '') {
-            $('.select_product_line').show();
-        } else {
-            $('.select_product_line').hide();
-        }
+        console.log(selectedState);
+        // // show our product line filter once a state is selected
+        // if(selectedState != '') {
+        //     $('.select_product_line').show();
+        // } else {
+        //     $('.select_product_line').hide();
+        // }
         
         // Loop through each listing
         $( ".rep_list .rep" ).each(function() {
-            
+            console.log(selectedState);
             // If this rep has our selected state in it's class list, show the rep
             if($(this).hasClass(selectedState)) {
                 
-                // Get our product line filter value
-                var selectedProductLine = $( ".product_line option:selected" ).val();
+                // // Get our product line filter value
+                // var selectedProductLine = $( ".product_line option:selected" ).val();
                 
-                if(selectedProductLine == '') {
+                // if(selectedProductLine == '') {
                     // if there is nothing selected then show our rep
                     $(this).show();
                     entry_found = true;
                     
-                }
+                // }
                     
-                else {
-                    // if there is something selected see if it matches our listing
-                    if($(this).data('product-line').includes(selectedProductLine)) {
-                        $(this).show();
-                        entry_found = true;
-                    }
-                    else
-                        $(this).hide();
-                }
+                // else {
+                //     // if there is something selected see if it matches our listing
+                //     if($(this).data('product-line').includes(selectedProductLine)) {
+                //         $(this).show();
+                //         entry_found = true;
+                //     }
+                //     else
+                //         $(this).hide();
+                // }
             } else {
                 $(this).hide();
             }

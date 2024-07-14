@@ -1,78 +1,50 @@
 <?php
 	$class_states = '';
+	$keys = [];
 	foreach($this->state as $state) {
-		$class_states .= $state . ' ';
+		$class_states .= ' '.$state ;
+		$array = array('st1' => 'alabama', 'st2' => 'alaska', 'st3' => 'arizona', 'st4' => 'arkansas', 'st5' => 'california', 'st6' => 'colorado', 'st7' => 'connecticut', 'st8' => 'delaware', 'st9' => 'washington_dc', 'st10' => 'florida', 'st11' => 'georgia', 'st12' => 'hawaii', 'st13' => 'idaho', 'st14' => 'illinois', 'st15' => 'indiana', 'st16' => 'iowa', 'st17' => 'kansas', 'st18' => 'kentucky', 'st19' => 'louisiana', 'st20' => 'maine', 'st21' => 'maryland', 'st22' => 'massachusetts', 'st23' => 'michigan', 'st24' => 'minnesota', 'st25' => 'mississippi', 'st26' => 'missouri', 'st27' => 'montana', 'st28' => 'nebraska', 'st29' => 'nevada', 'st30' => 'new_hampshire', 'st31' => 'new_jersey', 'st32' => 'new_mexico', 'st33' => 'new_york', 'st34' => 'north_carolina', 'st35' => 'north_dakota', 'st36' => 'ohio', 'st37' => 'oklahoma', 'st38' => 'oregon', 'st39' => 'pennsylvania', 'st40' => 'rhode_island', 'st41' => 'south_carolina', 'st42' => 'south_dakota', 'st43' => 'tennessee', 'st44' => 'texas', 'st45' => 'utah', 'st46' => 'vermont', 'st47' => 'virginia', 'st48' => 'washington', 'st49' => 'west_virginia', 'st50' => 'wisconsin', 'st51' => 'wyoming',);
+		$keys[] = array_search($state, $array);
 	}
-	
-//	$class_product_line = '';
-//	foreach($this->product_line as $product_line) {
-//		$class_product_line .= $product_line . ' ';
-//	}
 ?>
 
-<div class="rep <?= $class_states ?>" style="display: none;" data-product-line="<?= $class_product_line ?>">
-	
-	<div class="col_1">
-		<h3 class="rep_name"><?= $this->rep_name ?></h3>
-		<p class="company_name"><?= $this->company_name ?></p>
-	</div>
-	
-	
-	
-	<div class="group_1">
-		<div class="col_2">
-			<h4 class="label">Email</h4>
-			<p class="email"><?= $this->email ?></p>
-		</div>
-		
-		<div class="col_3">
-			<h4 class="label">Phone</h4>
-			<p class="phone_number"><?= $this->phone_number ?></p>
-		</div>
-	</div>
-	
-	
-	
-	<div class="group_2">
-		<div class="col_4">
-			<h4 class="label">Territory</h4>
-			<p class="territory"><?= $this->region ?></p>
-		</div>
-		
-		<div class="col_5">
-			<a href="mailto:<?= $this->email ?>">Contact</a>
-		</div>
-	</div>
-	
-	
-	
-	<div class="col_dev">
-		
-		<div class="wrapper">
-			<p class="label">States</p>
-			<p class="states">
-				<?php
-					$state_count = 0;
-					foreach($this->state as $state) {
-						if($state_count == 0) {
-							echo $state;
-						} else {
-							echo ", " . $state;
-						}
-						$state_count++;
-					}
-				?>
-			</p>
-		</div>
-		
-<!-- 		<div class="wrapper">
-			<p class="label">Product Line</p>
-			<p class="product_line">
-				<?= $this->product_line ?>
-			</p>
-		</div> -->
-		
-	</div>
-	
+<div class="rep<?= $class_states ?>" style="display: none;">
+
+		<?php $rep_info = '<div class="rep_wrap">'; ?>
+		<?php if ($this->region):
+		$rep_info .= '<p class="territory">'.$this->region.'</p>';
+		endif; ?>
+		<?php if ($this->rep_name):
+		$rep_info .= '<p class="rep_name">'.$this->rep_name.'</p>';
+		endif; ?>
+		<?php if ($this->company_name):
+		$rep_info .= '<p class="company_name">'.$this->company_name.'</p>';
+		endif; ?>
+		<?php if ($this->address):
+		$rep_info .= '<p class="address">'.$this->address.'<br>'.$this->city.', '.$this->address_state.'  '.$this->zip.'</p>';
+		endif; ?>
+		<?php if ($this->phone_number):
+		$rep_info .= '<p class="phone_number">Phone: <a href="tel:'.$this->phone_number.'">'.$this->phone_number.'</a></p>';
+		endif; ?>
+		<?php if ($this->alt_phone_number):
+		$rep_info .= '<p class="alt_phone_number">Alt Phone: <a href="tel:'.$this->alt_phone_number.'">'.$this->alt_phone_number.'</a></p>';
+		endif; ?>
+		<?php if ($this->email):
+		$rep_info .= '<p class="email">Email: <a href="mailto:'.$this->email.'">'.$this->email.'</a></p>';
+		endif; ?>
+		<?php if ($this->website):
+		$rep_info .= '<p class="email">Website: <a href="'.$this->website.'" target="_blank" rel="nofollow">'.$this->website.'</a></p>';
+		endif; ?>
+		<?php $rep_info .= '</div>'; ?>
+		<?php echo $rep_info; ?>
 	
 </div>
+<?php
+	foreach($keys as $key) {
+		// $rep_array[$key] = $rep_info;
+		if (!empty($key)) {
+			
+			echo "<script>var comments = map.fetchStateAttr('".$key."', 'comment'); map.setComment('".$key."', comments + '".$rep_info."');</script>";
+		}
+	} 
+;?>
