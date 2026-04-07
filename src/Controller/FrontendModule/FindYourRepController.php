@@ -20,12 +20,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 #[AsFrontendModule(
-    type: 'mod_find_your_rep',
+    type: FindYourRepController::TYPE,
     category: 'madrid_find_your_rep',
-    template: 'mod_find_your_rep'
+    template: 'frontend_module/mod_find_your_rep'
 )]
 class FindYourRepController extends AbstractFrontendModuleController
 {
+    public const TYPE = 'mod_find_your_rep';
+
     protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
         $reps = RepModel::findBy('published', '1');
@@ -35,7 +37,6 @@ class FindYourRepController extends AbstractFrontendModuleController
         if (null === $reps) {
             $template->empty = 'No Locations Found';
             $template->reps = [];
-
             return $template->getResponse();
         }
 
@@ -43,19 +44,19 @@ class FindYourRepController extends AbstractFrontendModuleController
 
         foreach ($reps as $rep) {
             $arrReps[] = [
-                'rep_name'        => $rep->rep_name,
-                'company_name'    => $rep->company_name,
-                'region'          => $rep->region,
-                'address'         => $rep->address,
-                'city'            => $rep->city,
-                'address_state'   => $rep->address_state,
-                'zip'             => $rep->zip,
-                'phone_number'    => $rep->phone_number,
-                'alt_phone_number'=> $rep->alt_phone_number,
-                'email'           => $rep->email,
-                'website'         => $rep->website,
-                'product_line'    => StringUtil::deserialize($rep->product_line, true),
-                'state'           => StringUtil::deserialize($rep->state, true),
+                'rep_name'         => $rep->rep_name,
+                'company_name'     => $rep->company_name,
+                'region'           => $rep->region,
+                'address'          => $rep->address,
+                'city'             => $rep->city,
+                'address_state'    => $rep->address_state,
+                'zip'              => $rep->zip,
+                'phone_number'     => $rep->phone_number,
+                'alt_phone_number' => $rep->alt_phone_number,
+                'email'            => $rep->email,
+                'website'          => $rep->website,
+                'product_line'     => StringUtil::deserialize($rep->product_line, true),
+                'state'            => StringUtil::deserialize($rep->state, true),
             ];
         }
 
@@ -65,9 +66,9 @@ class FindYourRepController extends AbstractFrontendModuleController
     }
 
     /**
-     * Returns the US states array for use in templates or other contexts.
+     * Returns the US states array — available for use in templates or other services.
      */
-    public function getStates(): array
+    public static function getStates(): array
     {
         return [
             'United States' => [
@@ -128,11 +129,11 @@ class FindYourRepController extends AbstractFrontendModuleController
     }
 
     /**
-     * Generates a <select> option string for US states.
+     * Generates an HTML <select> options string for US states.
      */
-    public function generateSelectOptions(bool $blank = true): string
+    public static function generateSelectOptions(bool $blank = true): string
     {
-        $states = $this->getStates();
+        $states = self::getStates();
         $html = $blank ? '<option value="">Select Location...</option>' : '';
         $html .= '<optgroup label="United States">';
 

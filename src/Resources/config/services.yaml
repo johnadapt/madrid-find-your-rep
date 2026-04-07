@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Bcs\MadridFindRepBundle\Controller\FrontendModule\FindYourRepController:
+        tags:
+            - { name: contao.frontend_module, type: mod_find_your_rep, category: madrid_find_your_rep }
+
+    Bcs\MadridFindRepBundle\Backend\Reps:
+        public: true

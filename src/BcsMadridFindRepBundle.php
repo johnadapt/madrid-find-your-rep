@@ -10,13 +10,26 @@
 
 namespace Bcs\MadridFindRepBundle;
 
+use Bcs\MadridFindRepBundle\DependencyInjection\BcsMadridFindRepExtension;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class BcsMadridFindRepBundle extends Bundle
 {
+    /**
+     * Tell Symfony where the bundle root is.
+     * Resources/ lives inside src/, so getPath() returns __DIR__ (= src/).
+     */
     public function getPath(): string
     {
-        // Resources/ lives inside src/, which is __DIR__
         return __DIR__;
+    }
+
+    /**
+     * Return our custom Extension so Symfony loads services.yaml automatically.
+     */
+    public function getContainerExtension(): ExtensionInterface
+    {
+        return new BcsMadridFindRepExtension();
     }
 }

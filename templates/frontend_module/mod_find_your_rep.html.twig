@@ -1,4 +1,4 @@
-{% extends '@Contao/frontend_module/default.html.twig' %}
+{% extends "@Contao/frontend_module/default.html.twig" %}
 
 {% block content %}
     {% if empty is defined and empty %}
@@ -11,7 +11,7 @@
             <div class="rep_list">
                 <h2 id="state_heading"></h2>
                 {% for rep in reps %}
-                    {{ include('@BcsMadridFindRep/frontend_module/item_rep.html.twig') }}
+                    {% include "frontend_module/item_rep.html.twig" %}
                 {% endfor %}
             </div>
         </div>
