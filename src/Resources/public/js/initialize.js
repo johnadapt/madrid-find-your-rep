@@ -2,7 +2,6 @@ var map = new FlaMap(map_cfg);
 map.drawOnDomReady('map-container');
 map.on('click', function(ev, sid, map) { 
   name = map.fetchStateAttr(sid, 'name');
-  console.log(name);
   nameLower = name.toLowerCase();
   check = nameLower.includes("district");
   if(check){
