@@ -60,7 +60,7 @@ class FindYourRepController extends Module
         $GLOBALS['TL_JAVASCRIPT']['map_js_paths']     = 'bundles/bcsmadridfindrep/js/paths.js';
         $GLOBALS['TL_JAVASCRIPT']['map_js_map']       = 'bundles/bcsmadridfindrep/js/map.js';
         $GLOBALS['TL_JAVASCRIPT']['map_js_init']      = 'bundles/bcsmadridfindrep/js/initialize.js';
-        $GLOBALS['TL_JAVASCRIPT']['map_js_init']      = 'bundles/bcsmadridfindrep/js/mod_find_your_rep.js"';
+        $GLOBALS['TL_JAVASCRIPT']['find_your_rep']      = 'bundles/bcsmadridfindrep/js/mod_find_your_rep.js"';
         // $GLOBALS['TL_BODY']['map_js_raphael']  = '<script src="bundles/bcsmadridfindrep/js/raphael.min.js"></script>';
         // $GLOBALS['TL_BODY']['map_js_settings'] = '<script src="bundles/bcsmadridfindrep/js/settings.js"></script>';
         // $GLOBALS['TL_BODY']['map_js_paths']    = '<script src="bundles/bcsmadridfindrep/js/paths.js"></script>';
