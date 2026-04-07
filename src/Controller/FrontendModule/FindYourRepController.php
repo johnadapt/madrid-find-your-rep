@@ -55,12 +55,18 @@ class FindYourRepController extends Module
         // is parsed — meaning a mix of deferred + inline tags has unpredictable
         // execution order. Putting everything in TL_BODY as raw tags guarantees
         // sequential synchronous loading in exactly the order listed below.
-        $GLOBALS['TL_BODY']['map_js_raphael']  = '<script src="bundles/bcsmadridfindrep/js/raphael.min.js"></script>';
-        $GLOBALS['TL_BODY']['map_js_settings'] = '<script src="bundles/bcsmadridfindrep/js/settings.js"></script>';
-        $GLOBALS['TL_BODY']['map_js_paths']    = '<script src="bundles/bcsmadridfindrep/js/paths.js"></script>';
-        $GLOBALS['TL_BODY']['map_js_map']      = '<script src="bundles/bcsmadridfindrep/js/map.js"></script>';
-        $GLOBALS['TL_BODY']['map_js_init']     = '<script src="bundles/bcsmadridfindrep/js/initialize.js"></script>';
-        $GLOBALS['TL_BODY']['find_your_rep']   = '<script src="bundles/bcsmadridfindrep/js/mod_find_your_rep.js"></script>';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_raphael']   = 'bundles/bcsmadridfindrep/js/raphael.min.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_settings']  = 'bundles/bcsmadridfindrep/js/settings.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_paths']     = 'bundles/bcsmadridfindrep/js/paths.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_map']       = 'bundles/bcsmadridfindrep/js/map.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_init']      = 'bundles/bcsmadridfindrep/js/initialize.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_init']      = 'bundles/bcsmadridfindrep/js/mod_find_your_rep.js"';
+        // $GLOBALS['TL_BODY']['map_js_raphael']  = '<script src="bundles/bcsmadridfindrep/js/raphael.min.js"></script>';
+        // $GLOBALS['TL_BODY']['map_js_settings'] = '<script src="bundles/bcsmadridfindrep/js/settings.js"></script>';
+        // $GLOBALS['TL_BODY']['map_js_paths']    = '<script src="bundles/bcsmadridfindrep/js/paths.js"></script>';
+        // $GLOBALS['TL_BODY']['map_js_map']      = '<script src="bundles/bcsmadridfindrep/js/map.js"></script>';
+        // $GLOBALS['TL_BODY']['map_js_init']     = '<script src="bundles/bcsmadridfindrep/js/initialize.js"></script>';
+        // $GLOBALS['TL_BODY']['find_your_rep']   = '<script src="bundles/bcsmadridfindrep/js/mod_find_your_rep.js"></script>';
         $GLOBALS['TL_CSS']['maps']             = 'bundles/bcsmadridfindrep/css/map.css';
 
         $objReps = RepModel::findBy('published', '1');
