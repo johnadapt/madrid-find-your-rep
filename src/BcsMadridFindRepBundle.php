@@ -16,6 +16,7 @@ class BcsMadridFindRepBundle extends Bundle
 {
     public function getPath(): string
     {
-        return \dirname(__DIR__);
+        // Resources/ lives inside src/, which is __DIR__
+        return __DIR__;
     }
 }

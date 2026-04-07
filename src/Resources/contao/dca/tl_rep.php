@@ -16,7 +16,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = [
 
     // Config
     'config' => [
-        'dataContainer'  => \Contao\DC_Table::class,
+        'dataContainer'   => \Contao\DC_Table::class,
         'enableVersioning' => true,
         'sql' => [
             'keys' => [
@@ -39,6 +39,11 @@ $GLOBALS['TL_DCA']['tl_rep'] = [
             'format' => '%s - %s - %s',
         ],
         'global_operations' => [
+            'export' => [
+                'label' => 'Export Reps CSV',
+                'href'  => 'key=exportReps',
+                'icon'  => 'theme_export.svg',
+            ],
             'all' => [
                 'label'      => &$GLOBALS['TL_LANG']['MSC']['all'],
                 'href'       => 'act=select',
@@ -48,28 +53,31 @@ $GLOBALS['TL_DCA']['tl_rep'] = [
         ],
         'operations' => [
             'edit' => [
-                'href' => 'act=edit',
-                'icon' => 'edit.svg',
+                'label' => &$GLOBALS['TL_LANG']['tl_rep']['edit'],
+                'href'  => 'act=edit',
+                'icon'  => 'edit.svg',
             ],
             'copy' => [
-                'href' => 'act=copy',
-                'icon' => 'copy.svg',
+                'label' => &$GLOBALS['TL_LANG']['tl_rep']['copy'],
+                'href'  => 'act=copy',
+                'icon'  => 'copy.svg',
             ],
             'delete' => [
+                'label'      => &$GLOBALS['TL_LANG']['tl_rep']['delete'],
                 'href'       => 'act=delete',
                 'icon'       => 'delete.svg',
-                'attributes' => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? 'Are you sure?') . '\'))return false;Backend.getScrollOffset()"',
+                'attributes' => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? 'Really delete?') . '\'))return false;Backend.getScrollOffset()"',
             ],
             'toggle' => [
-                'href'                  => null,
-                'icon'                  => 'visible.svg',
-                'showInHeader'          => false,
-                // Contao 5 toggleField — no custom button_callback needed
-                'toggleField'           => 'published',
+                'label'           => &$GLOBALS['TL_LANG']['tl_rep']['toggle'],
+                'icon'            => 'visible.svg',
+                'attributes'      => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
+                'button_callback' => [Reps::class, 'toggleIcon'],
             ],
             'show' => [
-                'href' => 'act=show',
-                'icon' => 'show.svg',
+                'label' => &$GLOBALS['TL_LANG']['tl_rep']['show'],
+                'href'  => 'act=show',
+                'icon'  => 'show.svg',
             ],
         ],
     ],
@@ -144,7 +152,7 @@ $GLOBALS['TL_DCA']['tl_rep'] = [
             'inputType'        => 'checkbox',
             'options_callback' => [Reps::class, 'getStates'],
             'eval'             => ['multiple' => true, 'chosen' => true, 'tl_class' => 'w50'],
-            'sql'              => ['type' => 'string', 'length' => 255, 'default' => ''],
+            'sql'              => ['type' => 'blob', 'notnull' => false],
         ],
         'zip' => [
             'label'     => &$GLOBALS['TL_LANG']['tl_rep']['zip'],
@@ -185,7 +193,6 @@ $GLOBALS['TL_DCA']['tl_rep'] = [
             'label'     => &$GLOBALS['TL_LANG']['tl_rep']['published'],
             'exclude'   => true,
             'inputType' => 'checkbox',
-            'toggle'    => true,
             'eval'      => ['submitOnChange' => true, 'doNotCopy' => true],
             'sql'       => ['type' => 'string', 'fixed' => true, 'length' => 1, 'default' => ''],
         ],
