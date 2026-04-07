@@ -11,138 +11,89 @@
 namespace Bcs\MadridFindRepBundle\Controller\FrontendModule;
 
 use Bcs\MadridFindRepBundle\Model\RepModel;
-use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
-use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
-use Contao\CoreBundle\Twig\FragmentTemplate;
+use Contao\FrontendTemplate;
+use Contao\Module;
 use Contao\ModuleModel;
 use Contao\StringUtil;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Contao\System;
 
-#[AsFrontendModule(
-    type: FindYourRepController::TYPE,
-    category: 'madrid_find_your_rep',
-    template: 'frontend_module/mod_find_your_rep'
-)]
-class FindYourRepController extends AbstractFrontendModuleController
+class FindYourRepController extends Module
 {
-    public const TYPE = 'mod_find_your_rep';
+    /**
+     * Template name
+     * @var string
+     */
+    protected $strTemplate = 'mod_find_your_rep';
 
-    protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
+    /**
+     * Display a wildcard in the back end
+     */
+    public function generate(): string
     {
-        $reps = RepModel::findBy('published', '1');
+        $request = System::getContainer()->get('request_stack')->getCurrentRequest();
+        if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request)) {
+            $objTemplate = new \Contao\BackendTemplate('be_wildcard');
+            $objTemplate->wildcard = '### FIND YOUR REP ###';
+            $objTemplate->title    = $this->headline;
+            $objTemplate->id       = $this->id;
+            $objTemplate->link     = $this->name;
+            $objTemplate->href     = 'contao/main.php?do=themes&table=tl_module&act=edit&id=' . $this->id;
+            return $objTemplate->parse();
+        }
 
-        $template->empty = '';
+        return parent::generate();
+    }
 
-        if (null === $reps) {
-            $template->empty = 'No Locations Found';
-            $template->reps = [];
-            return $template->getResponse();
+    /**
+     * Generate the module output
+     */
+    protected function compile(): void
+    {
+        // Enqueue assets the Contao 5 way
+        $GLOBALS['TL_JAVASCRIPT']['map_js_raphael']   = 'bundles/bcsmadridfindrep/js/raphael.min.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_settings']  = 'bundles/bcsmadridfindrep/js/settings.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_paths']     = 'bundles/bcsmadridfindrep/js/paths.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_map']       = 'bundles/bcsmadridfindrep/js/map.js';
+        $GLOBALS['TL_JAVASCRIPT']['map_js_init']      = 'bundles/bcsmadridfindrep/js/initialize.js';
+        $GLOBALS['TL_BODY']['find_your_rep']          = '<script src="bundles/bcsmadridfindrep/js/mod_find_your_rep.js"></script>';
+        $GLOBALS['TL_CSS']['maps']                    = 'bundles/bcsmadridfindrep/css/map.css';
+
+        $objReps = RepModel::findBy('published', '1');
+
+        if (!$objReps) {
+            $this->Template->empty = 'No Locations Found';
+            $this->Template->reps  = [];
+            return;
         }
 
         $arrReps = [];
 
-        foreach ($reps as $rep) {
-            $arrReps[] = [
-                'rep_name'         => $rep->rep_name,
-                'company_name'     => $rep->company_name,
-                'region'           => $rep->region,
-                'address'          => $rep->address,
-                'city'             => $rep->city,
-                'address_state'    => $rep->address_state,
-                'zip'              => $rep->zip,
-                'phone_number'     => $rep->phone_number,
-                'alt_phone_number' => $rep->alt_phone_number,
-                'email'            => $rep->email,
-                'website'          => $rep->website,
-                'product_line'     => StringUtil::deserialize($rep->product_line, true),
-                'state'            => StringUtil::deserialize($rep->state, true),
-            ];
+        while ($objReps->next()) {
+            $arrLocation = [];
+
+            $arrLocation['rep_name']         = $objReps->rep_name;
+            $arrLocation['company_name']     = $objReps->company_name;
+            $arrLocation['region']           = $objReps->region;
+            $arrLocation['address']          = $objReps->address;
+            $arrLocation['city']             = $objReps->city;
+            $arrLocation['address_state']    = $objReps->address_state;
+            $arrLocation['zip']              = $objReps->zip;
+            $arrLocation['phone_number']     = $objReps->phone_number;
+            $arrLocation['alt_phone_number'] = $objReps->alt_phone_number;
+            $arrLocation['email']            = $objReps->email;
+            $arrLocation['website']          = $objReps->website;
+            // product_line is plain text — do NOT deserialize
+            $arrLocation['product_line']     = $objReps->product_line;
+            // state IS serialized (multi-checkbox)
+            $arrLocation['state']            = StringUtil::deserialize($objReps->state, true);
+
+            $strItemTemplate = 'item_rep';
+            $objTemplate = new FrontendTemplate($strItemTemplate);
+            $objTemplate->setData($arrLocation);
+            $arrReps[] = $objTemplate->parse();
         }
 
-        $template->reps = $arrReps;
-
-        return $template->getResponse();
-    }
-
-    /**
-     * Returns the US states array — available for use in templates or other services.
-     */
-    public static function getStates(): array
-    {
-        return [
-            'United States' => [
-                'alabama'        => 'Alabama',
-                'alaska'         => 'Alaska',
-                'arizona'        => 'Arizona',
-                'arkansas'       => 'Arkansas',
-                'california'     => 'California',
-                'colorado'       => 'Colorado',
-                'connecticut'    => 'Connecticut',
-                'delaware'       => 'Delaware',
-                'florida'        => 'Florida',
-                'georgia'        => 'Georgia',
-                'hawaii'         => 'Hawaii',
-                'idaho'          => 'Idaho',
-                'illinois'       => 'Illinois',
-                'indiana'        => 'Indiana',
-                'iowa'           => 'Iowa',
-                'kansas'         => 'Kansas',
-                'kentucky'       => 'Kentucky',
-                'louisiana'      => 'Louisiana',
-                'maine'          => 'Maine',
-                'maryland'       => 'Maryland',
-                'massachusetts'  => 'Massachusetts',
-                'michigan'       => 'Michigan',
-                'minnesota'      => 'Minnesota',
-                'mississippi'    => 'Mississippi',
-                'missouri'       => 'Missouri',
-                'montana'        => 'Montana',
-                'nebraska'       => 'Nebraska',
-                'nevada'         => 'Nevada',
-                'new_hampshire'  => 'New Hampshire',
-                'new_jersey'     => 'New Jersey',
-                'new_mexico'     => 'New Mexico',
-                'new_york'       => 'New York',
-                'north_carolina' => 'North Carolina',
-                'north_dakota'   => 'North Dakota',
-                'ohio'           => 'Ohio',
-                'oklahoma'       => 'Oklahoma',
-                'oregon'         => 'Oregon',
-                'pennsylvania'   => 'Pennsylvania',
-                'rhode_island'   => 'Rhode Island',
-                'south_carolina' => 'South Carolina',
-                'south_dakota'   => 'South Dakota',
-                'tennessee'      => 'Tennessee',
-                'texas'          => 'Texas',
-                'utah'           => 'Utah',
-                'vermont'        => 'Vermont',
-                'virginia'       => 'Virginia',
-                'washington'     => 'Washington',
-                'west_virginia'  => 'West Virginia',
-                'wisconsin'      => 'Wisconsin',
-                'wyoming'        => 'Wyoming',
-                'washington_dc'  => 'Washington, D.C.',
-                'puerto_rico'    => 'Puerto Rico',
-            ],
-        ];
-    }
-
-    /**
-     * Generates an HTML <select> options string for US states.
-     */
-    public static function generateSelectOptions(bool $blank = true): string
-    {
-        $states = self::getStates();
-        $html = $blank ? '<option value="">Select Location...</option>' : '';
-        $html .= '<optgroup label="United States">';
-
-        foreach ($states['United States'] as $abbr => $name) {
-            $html .= sprintf('<option value="%s">%s</option>', htmlspecialchars($abbr), htmlspecialchars($name));
-        }
-
-        $html .= '</optgroup>';
-
-        return $html;
+        $this->Template->reps  = $arrReps;
+        $this->Template->empty = '';
     }
 }

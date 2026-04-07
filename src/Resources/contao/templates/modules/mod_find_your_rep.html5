@@ -1,0 +1,13 @@
+<div class="mod_find_your_rep_map">
+	<div id='map-container'></div>
+</div>
+<div class="mod_find_your_rep">
+	<div class="rep_list">
+		<h2 id="state_heading"></h2>
+		<?php
+			foreach($this->reps as $rep) {
+				echo $rep;
+			}
+		?>
+	</div>
+</div>
