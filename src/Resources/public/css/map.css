@@ -1,3 +1,6 @@
+.showState{
+    display: block!important;
+}
 .fm-map-container svg {
 	z-index: 1;
 	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
@@ -159,9 +162,7 @@
 .fm-no-events {
     pointer-events: none;
 }
-.showState{
-  display:block!important;
-}
+
 @media (max-width: 768px) {
 	.fm-mobile-fixed .fm-tooltip-frame {
 		max-width: 100%;

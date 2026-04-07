@@ -1,0 +1,10 @@
+madridacoustics.com
+*.madridacoustics.com
+madridacoustics.brightcloudstudioserver.com
+*.madridacoustics.brightcloudstudioserver.com
+madridinc.com
+*.madridinc.com
+madridinc.brightcloudstudioserver.com
+*.madridinc.brightcloudstudioserver.com
+localhost
+127.0.0.1
