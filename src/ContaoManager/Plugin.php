@@ -1,28 +1,28 @@
 <?php
 
 /**
- * @copyright  Bright Cliud Studio
+ * @copyright  Bright Cloud Studio
  * @author     Bright Cloud Studio
- * @package    Contao CE Glide
+ * @package    madrid-find-your-rep
  * @license    LGPL-3.0+
- * @see	       https://github.com/johnadapt/madrid-find-your-rep
+ * @see        https://github.com/johnadapt/madrid-find-your-rep
  */
 
 namespace Bcs\MadridFindRepBundle\ContaoManager;
-use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
+
+use Bcs\MadridFindRepBundle\BcsMadridFindRepBundle;
+use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
+use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 
 class Plugin implements BundlePluginInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getBundles(ParserInterface $parser)
+    public function getBundles(ParserInterface $parser): array
     {
         return [
-            BundleConfig::create('Bcs\MadridFindRepBundle\BcsMadridFindRepBundle')
-                ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle']),
+            BundleConfig::create(BcsMadridFindRepBundle::class)
+                ->setLoadAfter([ContaoCoreBundle::class]),
         ];
     }
 }

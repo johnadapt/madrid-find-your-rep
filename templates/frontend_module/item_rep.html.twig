@@ -1,0 +1,85 @@
+{#
+    item_rep.html.twig
+    Available variables: rep_name, company_name, region, address, city, address_state, zip,
+                         phone_number, alt_phone_number, email, website, product_line, state (array)
+#}
+{% set stateMap = {
+    'alabama': 'st1', 'alaska': 'st2', 'arizona': 'st3', 'arkansas': 'st4',
+    'california': 'st5', 'colorado': 'st6', 'connecticut': 'st7', 'delaware': 'st8',
+    'washington_dc': 'st9', 'florida': 'st10', 'georgia': 'st11', 'hawaii': 'st12',
+    'idaho': 'st13', 'illinois': 'st14', 'indiana': 'st15', 'iowa': 'st16',
+    'kansas': 'st17', 'kentucky': 'st18', 'louisiana': 'st19', 'maine': 'st20',
+    'maryland': 'st21', 'massachusetts': 'st22', 'michigan': 'st23', 'minnesota': 'st24',
+    'mississippi': 'st25', 'missouri': 'st26', 'montana': 'st27', 'nebraska': 'st28',
+    'nevada': 'st29', 'new_hampshire': 'st30', 'new_jersey': 'st31', 'new_mexico': 'st32',
+    'new_york': 'st33', 'north_carolina': 'st34', 'north_dakota': 'st35', 'ohio': 'st36',
+    'oklahoma': 'st37', 'oregon': 'st38', 'pennsylvania': 'st39', 'rhode_island': 'st40',
+    'south_carolina': 'st41', 'south_dakota': 'st42', 'tennessee': 'st43', 'texas': 'st44',
+    'utah': 'st45', 'vermont': 'st46', 'virginia': 'st47', 'washington': 'st48',
+    'west_virginia': 'st49', 'wisconsin': 'st50', 'wyoming': 'st51'
+} %}
+
+{% set classStates = '' %}
+{% set stateKeys = [] %}
+{% for s in rep.state %}
+    {% set classStates = classStates ~ ' ' ~ s %}
+    {% if stateMap[s] is defined %}
+        {% set stateKeys = stateKeys|merge([stateMap[s]]) %}
+    {% endif %}
+{% endfor %}
+
+<div class="rep{{ classStates }}" style="display: none;">
+    <div class="rep_wrap">
+        {% if rep.region %}
+            <p class="territory">{{ rep.region }}</p>
+        {% endif %}
+        {% if rep.rep_name %}
+            <p class="rep_name">{{ rep.rep_name }}</p>
+        {% endif %}
+        {% if rep.company_name %}
+            <p class="company_name">{{ rep.company_name }}</p>
+        {% endif %}
+        {% if rep.address %}
+            <p class="address">
+                {{ rep.address }}<br>
+                {{ rep.city }}, {{ rep.address_state }}&nbsp;&nbsp;{{ rep.zip }}
+            </p>
+        {% endif %}
+        {% if rep.phone_number %}
+            <p class="phone_number">Phone: <a href="tel:{{ rep.phone_number }}">{{ rep.phone_number }}</a></p>
+        {% endif %}
+        {% if rep.alt_phone_number %}
+            <p class="alt_phone_number">Alt Phone: <a href="tel:{{ rep.alt_phone_number }}">{{ rep.alt_phone_number }}</a></p>
+        {% endif %}
+        {% if rep.email %}
+            <p class="email">Email: <a href="mailto:{{ rep.email }}">{{ rep.email }}</a></p>
+        {% endif %}
+        {% if rep.website %}
+            <p class="website">Website: <a href="{{ rep.website }}" target="_blank" rel="nofollow noopener">{{ rep.website }}</a></p>
+        {% endif %}
+    </div>
+</div>
+
+{% for key in stateKeys %}
+    {% if key %}
+        {# Build the rep_info HTML string for the map tooltip #}
+        {% set repHtml %}
+            <div class="rep_wrap">
+                {% if rep.region %}<p class="territory">{{ rep.region }}</p>{% endif %}
+                {% if rep.rep_name %}<p class="rep_name">{{ rep.rep_name }}</p>{% endif %}
+                {% if rep.company_name %}<p class="company_name">{{ rep.company_name }}</p>{% endif %}
+                {% if rep.address %}<p class="address">{{ rep.address }}<br>{{ rep.city }}, {{ rep.address_state }} {{ rep.zip }}</p>{% endif %}
+                {% if rep.phone_number %}<p class="phone_number">Phone: <a href="tel:{{ rep.phone_number }}">{{ rep.phone_number }}</a></p>{% endif %}
+                {% if rep.alt_phone_number %}<p class="alt_phone_number">Alt Phone: <a href="tel:{{ rep.alt_phone_number }}">{{ rep.alt_phone_number }}</a></p>{% endif %}
+                {% if rep.email %}<p class="email">Email: <a href="mailto:{{ rep.email }}">{{ rep.email }}</a></p>{% endif %}
+                {% if rep.website %}<p class="website">Website: <a href="{{ rep.website }}" target="_blank" rel="nofollow noopener">{{ rep.website }}</a></p>{% endif %}
+            </div>
+        {% endset %}
+        <script>
+            (function() {
+                var comments = map.fetchStateAttr('{{ key|e('js') }}', 'comment');
+                map.setComment('{{ key|e('js') }}', comments + {{ repHtml|json_encode|raw }});
+            })();
+        </script>
+    {% endif %}
+{% endfor %}

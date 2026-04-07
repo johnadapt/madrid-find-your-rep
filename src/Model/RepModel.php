@@ -8,14 +8,12 @@
  * @see        https://github.com/johnadapt/madrid-find-your-rep
  */
 
-namespace Bcs\MadridFindRepBundle;
+namespace Bcs\MadridFindRepBundle\Model;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Contao\Model;
 
-class BcsMadridFindRepBundle extends Bundle
+class RepModel extends Model
 {
-    public function getPath(): string
-    {
-        return \dirname(__DIR__);
-    }
+    /** @var string */
+    protected static $strTable = 'tl_rep';
 }
