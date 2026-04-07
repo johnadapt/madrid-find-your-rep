@@ -1,15 +1,11 @@
 <?php
 	$class_states = '';
-	$keys = [];
 	foreach($this->state as $state) {
-		$class_states .= ' '.$state ;
-		$array = array('st1' => 'alabama', 'st2' => 'alaska', 'st3' => 'arizona', 'st4' => 'arkansas', 'st5' => 'california', 'st6' => 'colorado', 'st7' => 'connecticut', 'st8' => 'delaware', 'st9' => 'washington_dc', 'st10' => 'florida', 'st11' => 'georgia', 'st12' => 'hawaii', 'st13' => 'idaho', 'st14' => 'illinois', 'st15' => 'indiana', 'st16' => 'iowa', 'st17' => 'kansas', 'st18' => 'kentucky', 'st19' => 'louisiana', 'st20' => 'maine', 'st21' => 'maryland', 'st22' => 'massachusetts', 'st23' => 'michigan', 'st24' => 'minnesota', 'st25' => 'mississippi', 'st26' => 'missouri', 'st27' => 'montana', 'st28' => 'nebraska', 'st29' => 'nevada', 'st30' => 'new_hampshire', 'st31' => 'new_jersey', 'st32' => 'new_mexico', 'st33' => 'new_york', 'st34' => 'north_carolina', 'st35' => 'north_dakota', 'st36' => 'ohio', 'st37' => 'oklahoma', 'st38' => 'oregon', 'st39' => 'pennsylvania', 'st40' => 'rhode_island', 'st41' => 'south_carolina', 'st42' => 'south_dakota', 'st43' => 'tennessee', 'st44' => 'texas', 'st45' => 'utah', 'st46' => 'vermont', 'st47' => 'virginia', 'st48' => 'washington', 'st49' => 'west_virginia', 'st50' => 'wisconsin', 'st51' => 'wyoming',);
-		$keys[] = array_search($state, $array);
+		$class_states .= ' '.$state;
 	}
 ?>
 
 <div class="rep<?= $class_states ?>" style="display: none;">
-
 		<?php $rep_info = '<div class="rep_wrap">'; ?>
 		<?php if ($this->region):
 		$rep_info .= '<p class="territory">'.$this->region.'</p>';
@@ -37,14 +33,5 @@
 		endif; ?>
 		<?php $rep_info .= '</div>'; ?>
 		<?php echo $rep_info; ?>
-	
+
 </div>
-<?php
-	foreach($keys as $key) {
-		// $rep_array[$key] = $rep_info;
-		if (!empty($key)) {
-			
-			echo "<script>var comments = map.fetchStateAttr('".$key."', 'comment'); map.setComment('".$key."', comments + '".$rep_info."');</script>";
-		}
-	} 
-;?>

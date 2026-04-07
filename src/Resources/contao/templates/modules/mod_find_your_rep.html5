@@ -11,3 +11,18 @@
 		?>
 	</div>
 </div>
+<?php if (!empty($this->mapComments)): ?>
+<script>
+(function() {
+	var comments = <?= $this->mapComments ?>;
+	for (var stateKey in comments) {
+		if (!comments.hasOwnProperty(stateKey)) { continue; }
+		var html = '';
+		for (var i = 0; i < comments[stateKey].length; i++) {
+			html += comments[stateKey][i];
+		}
+		map.setComment(stateKey, html);
+	}
+})();
+</script>
+<?php endif; ?>
