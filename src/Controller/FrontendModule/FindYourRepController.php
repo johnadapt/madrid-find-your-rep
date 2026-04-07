@@ -50,11 +50,14 @@ class FindYourRepController extends Module
     protected function compile(): void
     {
         // Enqueue assets the Contao 5 way
+        // raphael, settings, paths, and map must load first as regular scripts
         $GLOBALS['TL_JAVASCRIPT']['map_js_raphael']   = 'bundles/bcsmadridfindrep/js/raphael.min.js';
         $GLOBALS['TL_JAVASCRIPT']['map_js_settings']  = 'bundles/bcsmadridfindrep/js/settings.js';
         $GLOBALS['TL_JAVASCRIPT']['map_js_paths']     = 'bundles/bcsmadridfindrep/js/paths.js';
         $GLOBALS['TL_JAVASCRIPT']['map_js_map']       = 'bundles/bcsmadridfindrep/js/map.js';
-        $GLOBALS['TL_JAVASCRIPT']['map_js_init']      = 'bundles/bcsmadridfindrep/js/initialize.js';
+        // initialize.js and mod_find_your_rep.js must load in TL_BODY AFTER all the
+        // above scripts are fully parsed, so FlaMap is defined before it is called.
+        $GLOBALS['TL_BODY']['find_your_rep_init']     = '<script src="bundles/bcsmadridfindrep/js/initialize.js"></script>';
         $GLOBALS['TL_BODY']['find_your_rep']          = '<script src="bundles/bcsmadridfindrep/js/mod_find_your_rep.js"></script>';
         $GLOBALS['TL_CSS']['maps']                    = 'bundles/bcsmadridfindrep/css/map.css';
 
