@@ -143,8 +143,16 @@ class FindYourRepController extends Module
             }
         }
 
-        $this->Template->reps        = $arrReps;
-        $this->Template->empty       = '';
-        $this->Template->mapComments = json_encode($arrMapComments);
+        $this->Template->reps  = $arrReps;
+        $this->Template->empty = '';
+
+        // Inject setComment calls into TL_BODY AFTER initialize.js (which defines `map`).
+        // The module template renders inline in the page body, which is BEFORE TL_BODY,
+        // so any inline <script> calling map.setComment() would fail. Instead we build
+        // the call here and register it as a TL_BODY entry that runs after map is ready.
+        if (!empty($arrMapComments)) {
+            $json = json_encode($arrMapComments, JSON_HEX_TAG | JSON_HEX_AMP);
+            $GLOBALS['TL_BODY']['map_comments'] = '<script>(function(){var c=' . $json . ';for(var k in c){if(!c.hasOwnProperty(k)){continue;}var h="";for(var i=0;i<c[k].length;i++){h+=c[k][i];}map.setComment(k,h);}})();</script>';
+        }
     }
 }
